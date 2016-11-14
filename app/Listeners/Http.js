@@ -11,27 +11,28 @@ const Http = exports = module.exports = {}
  * @param  {Object} request
  * @param  {Object} response
  */
-Http.handleError = function * (error, request, response) {
-  /**
-   * DEVELOPMENT REPORTER
-   */
-  if (Env.get('NODE_ENV') === 'development') {
-    const ouch = new Ouch().pushHandler(
-      new Ouch.handlers.PrettyPageHandler('blue', null, 'sublime')
-    )
-    ouch.handleException(error, request.request, response.response, (output) => {
-      console.error(error.stack)
-    })
-    return
-  }
+ Http.handleError = function * (error, request, response) {
+ /**
+  * DEVELOPMENT REPORTER
+  */
+   if (Env.get('NODE_ENV') === 'development') {
+     return (new Ouch)
+       .pushHandler((new Ouch.handlers.JsonResponseHandler(
+             /* handle errors from ajax and json request only*/false,
+             /* return formatted trace information along with error response*/false,
+             false
+         )))
+       // .pushHandler(new Ouch.handlers.PrettyPageHandler())
+       .handleException(error, request.request, response.response, (output) => {
+         const status = error.status || 500;
 
-  /**
-   * PRODUCTION REPORTER
-   */
-  const status = error.status || 500
-  console.error(error.stack)
-  yield response.status(status).sendView('errors/index', {error})
-}
+         response.status(status).send(JSON.parse(output));
+         console.log('Error handled properly');
+       });
+   }
+
+   yield response.jsonApiError(error);
+ };
 
 /**
  * listener for Http.start event, emitted after
