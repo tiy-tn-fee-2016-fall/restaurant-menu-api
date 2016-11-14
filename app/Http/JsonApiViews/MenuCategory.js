@@ -8,7 +8,7 @@ class MenuCategory extends JsonApiView {
   items() {
     return this.hasMany('App/Http/JsonApiViews/MenuItem', {
       included: true,
-      excludeRelation: 'menuCategory'
+      excludeRelation: 'category'
     });
   }
 
