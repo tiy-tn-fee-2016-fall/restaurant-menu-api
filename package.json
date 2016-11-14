@@ -21,6 +21,8 @@
     "adonis-jsonapi": "^0.5.1",
     "adonis-lucid": "^3.0.10",
     "adonis-middleware": "^1.0.8",
+    "pg": "^6.1.0",
+    "sqlite": "^2.2.3",
     "standard": "^8.4.0",
     "youch": "^1.0.1"
   },
