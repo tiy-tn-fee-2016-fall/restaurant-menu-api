@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "nodemon --watch app --watch bootstrap --watch config --watch .env -x \"node --harmony\" server.js",
     "start": "node --harmony server.js",
-    "lint": "standard"
+    "lint": "standard",
+    "postdeploy": "node ace migration:run --force"
   },
   "engines": {
     "node": "7.0.0"
