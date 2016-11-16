@@ -5,9 +5,9 @@ class MenuItem extends JsonApiView {
     return ['name', 'description', 'price'];
   }
 
-  category() {
+  menuCategory() {
     return this.belongsTo('App/Http/JsonApiViews/MenuCategory', {
-      included: true,
+      included: false,
       excludeRelation: 'items'
     });
   }

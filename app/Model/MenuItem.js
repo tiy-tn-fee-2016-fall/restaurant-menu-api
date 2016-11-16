@@ -5,7 +5,7 @@ const Lucid = use('Lucid')
 class MenuItem extends Lucid {
 
 
-  category() {
+  menuCategory() {
     return this.belongsTo('App/Model/MenuCategory', 'id', 'menu_category_id');
   }
 }

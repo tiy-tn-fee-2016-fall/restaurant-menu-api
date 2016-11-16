@@ -5,10 +5,11 @@ class MenuCategory extends JsonApiView {
     return ['name'];
   }
 
-  items() {
+  'menuItems'() {
     return this.hasMany('App/Http/JsonApiViews/MenuItem', {
+      type: 'menu-item',
       included: true,
-      excludeRelation: 'category'
+      excludeRelation: 'category',
     });
   }
 

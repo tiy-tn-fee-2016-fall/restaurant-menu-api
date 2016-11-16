@@ -6,7 +6,7 @@ const attributes = ['name', 'description', 'price'];
 class MenuItemController {
 
   * index(request, response) {
-    const menuItems = yield MenuItem.with('category').fetch();
+    const menuItems = yield MenuItem.with('menuCategory').fetch();
 
     response.jsonApi('MenuItem', menuItems);
   }
@@ -14,8 +14,9 @@ class MenuItemController {
   * store(request, response) {
     const input = request.jsonApi.getAttributesSnakeCase(attributes);
     const foreignKeys = {
-      menu_category_id: request.getRelationId('category'),
+      menu_category_id: request.jsonApi.getRelationId('menu-category'),
     };
+
     const menuItem = yield MenuItem.create(Object.assign({}, input, foreignKeys));
 
     response.jsonApi('MenuItem', menuItem);
@@ -23,7 +24,7 @@ class MenuItemController {
 
   * show(request, response) {
     const id = request.param('id');
-    const menuItem = yield MenuItem.with('category').where({ id }).firstOrFail();
+    const menuItem = yield MenuItem.with('menuCategory').where({ id }).firstOrFail();
 
     response.jsonApi('MenuItem', menuItem);
   }
@@ -34,10 +35,10 @@ class MenuItemController {
 
     const input = request.jsonApi.getAttributesSnakeCase(attributes);
     const foreignKeys = {
-      menu_category_id: request.getRelationId(&#39;category&#39;),
+      menu_category_id: request.jsonApi.getRelationId('menu-category'),
     };
 
-    const menuItem = yield MenuItem.with('category').where({ id }).firstOrFail();
+    const menuItem = yield MenuItem.with('menuCategory').where({ id }).firstOrFail();
     yield menuItem.update(Object.assign({}, input, foreignKeys));
 
     response.jsonApi('MenuItem', menuItem);

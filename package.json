@@ -7,6 +7,9 @@
     "start": "node --harmony server.js",
     "lint": "standard"
   },
+  "engines": {
+    "node": "7.0.0"
+  },
   "author": "",
   "license": "MIT",
   "description": "",
@@ -18,7 +21,7 @@
     "adonis-fold": "^3.0.3",
     "adonis-framework": "^3.0.5",
     "adonis-generators": "^0.5.1",
-    "adonis-jsonapi": "^0.5.1",
+    "adonis-jsonapi": "^0.5.4",
     "adonis-lucid": "^3.0.10",
     "adonis-middleware": "^1.0.8",
     "pg": "^6.1.0",

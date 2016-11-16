@@ -6,7 +6,7 @@ const attributes = ['name'];
 class MenuCategoryController {
 
   * index(request, response) {
-    const menuCategories = yield MenuCategory.with('items').fetch();
+    const menuCategories = yield MenuCategory.with('menuItems').fetch();
 
     response.jsonApi('MenuCategory', menuCategories);
   }
@@ -22,7 +22,7 @@ class MenuCategoryController {
 
   * show(request, response) {
     const id = request.param('id');
-    const menuCategory = yield MenuCategory.with('items').where({ id }).firstOrFail();
+    const menuCategory = yield MenuCategory.with('menuItems').where({ id }).firstOrFail();
 
     response.jsonApi('MenuCategory', menuCategory);
   }
@@ -35,7 +35,7 @@ class MenuCategoryController {
     const foreignKeys = {
     };
 
-    const menuCategory = yield MenuCategory.with('items').where({ id }).firstOrFail();
+    const menuCategory = yield MenuCategory.with('menuItems').where({ id }).firstOrFail();
     yield menuCategory.update(Object.assign({}, input, foreignKeys));
 
     response.jsonApi('MenuCategory', menuCategory);
