@@ -11,7 +11,7 @@ URLS:
 This is a full JSON API Specification Compatible API for a `menu-category` model with the following properites:
 
 - name - String
-- items - Has Many `menu-item`
+- menuItems - Has Many `menu-item`
 
 ### `/menu-items`
 
@@ -20,4 +20,4 @@ This is a full JSON API Specification Compatible API for a `menu-item` model wit
 - name - String
 - description - String
 - price - Number
-- category - Belongs To `menu-category`
+- menuCategory - Belongs To `menu-category`
