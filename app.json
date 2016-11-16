@@ -4,7 +4,7 @@
   "repository": "https://github.com/tiy-tn-fee-2016-summer/restaurant-api",
   "addons": ["heroku-postgresql"],
   "scripts": {
-    "postdeploy": "node --harmony ace migration:run --force"
+    "postdeploy": "node ace migration:run --force"
   },
   "env": {
     "APP_KEY": {
