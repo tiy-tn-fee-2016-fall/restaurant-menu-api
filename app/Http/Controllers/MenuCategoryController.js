@@ -36,7 +36,9 @@ class MenuCategoryController {
     };
 
     const menuCategory = yield MenuCategory.with('menuItems').where({ id }).firstOrFail();
-    yield menuCategory.update(Object.assign({}, input, foreignKeys));
+    menuCategory.fill(Object.assign({}, input, foreignKeys));
+
+    yield menuCategory.save();
 
     response.jsonApi('MenuCategory', menuCategory);
   }
