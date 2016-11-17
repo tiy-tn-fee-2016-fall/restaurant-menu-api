@@ -20,3 +20,6 @@ const Route = use('Route')
 Route.on('/').render('welcome')
 Route.resource('/menu-categories', 'MenuCategoryController').except(['create', 'edit']);
 Route.resource('/menu-items', 'MenuItemController').except(['create', 'edit']);
+
+Route.post('/users', 'UserController.store');
+Route.post('/api/token', 'SessionController.store');
